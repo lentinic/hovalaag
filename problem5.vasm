@@ -1,0 +1,20 @@
+l0:
+  A=IN1  
+  A=IN2,W=A
+l1:
+  F=POS(A+B),C=A+B
+  JMPT POS
+  C=-A,A=IN1
+
+NEG:
+  OUT1=W,DECNZ NEG
+  JMP l1,A=IN2,W=A
+
+POS:
+  A=IN1,OUT1=W,DECNZ POS_L
+  A=IN2,W=A,JMP l1
+POS_L:
+  W=A,A=IN1
+  OUT1=W,DECNZ POS_L
+  A=IN2,W=A,JMP l1
+

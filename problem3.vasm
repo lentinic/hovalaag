@@ -1,0 +1,27 @@
+  A=IN1,B=19
+  A=IN1,B=A,C=B,D=A     
+ 
+l0:            
+  F=NEG(B-A)            
+  JMPT IS_MAX,A=B,B=A           
+      
+  A=D,D=A
+  F=NEG(B-A),A=D,D=A            
+  JMPT IS_MIN
+
+  A=IN1,B=A,DECNZ l0    
+  JMP EXIT,A=D,W=B
+
+IS_MIN:       
+  A=B,D=A
+  A=D,D=A
+  A=IN1,B=A,DECNZ l0    
+  JMP EXIT,A=D,W=B
+  
+IS_MAX:
+  A=IN1,DECNZ l0
+  A=D,W=B
+
+EXIT:               
+  W=A,OUT1=W            
+  OUT1=W                

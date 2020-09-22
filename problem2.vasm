@@ -1,0 +1,5 @@
+  A=IN1
+  B=A,W=A
+l0:
+  W=B,A=IN1,OUT1=W
+  JMP l0,W=A,B=A+B,OUT2=W
