@@ -1,11 +1,14 @@
-l0:
   A=IN1
   A=IN2,C=A>>1,F=NEG(A>>1)
+
+l0:
   B=A,D=A
   B=A+B
   A=0,JMPF l1
   A=D
+
 l1:
-  A=A+B
-  DECNZ l1,W=A
-  A=0,B=0,OUT1=W,JMP l0
+  A=A+B,W=A+B,DECNZ l1
+
+  A=IN1,OUT1=W
+  A=IN2,B=0,C=A>>1,F=NEG(A>>1),JMP l0
