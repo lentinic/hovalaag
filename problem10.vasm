@@ -1,0 +1,22 @@
+  A=IN1
+  A=IN1,B=A
+l0: 
+  F=ZERO(B-A)
+l1:
+  A=IN1,B=A,W=B,JMPT l2
+  OUT1=W,DEC,F=ZERO(B-A),JMP l1
+l2:
+  F=ZERO(B-A)
+  JMPT l3,A=C,B=A,F=ZERO(C)
+  A=IN1,OUT1=W,DEC
+  OUT1=W,DEC,F=ZERO(B-A),JMP l1
+l3:
+  W=-A,JMPT l4
+  OUT2=W
+l4:
+  A=B,B=-2,W=B
+  A=IN1,B=A,C=B,OUT1=W
+l5:
+  F=ZERO(B-A),A=IN1,B=A,DEC
+  W=C,JMPT l5
+  C=0,OUT2=W,JMP l0
