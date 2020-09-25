@@ -2,9 +2,10 @@ l0:
   A=IN1,B=4
 l1:
   A=IN1,W=0,F=ZERO(B-A)
+l2:
   JMPF l1,F=NEG(B-A),OUT1=W
-  JMPF l1
-  A=IN1,B=B-A,OUT1=W
+  JMPF l2,A=IN1,C=B-A,F=ZERO(B-A)
+  B=C,OUT1=W
   B=1,W=1,F=ZERO(A+B)
   JMPF l1,B=4,F=ZERO(B-A)
   JMPF l1
