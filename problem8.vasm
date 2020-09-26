@@ -1,0 +1,38 @@
+l0:
+  A=IN1,B=6
+l1:
+  B=-1120,C=B,W=A
+  A=B,B=A,W=A
+
+l2:
+  F=POS(A+B),B=A+B
+  JMPF l3
+  DECNZ l2,A=A>>1
+  JMP l4,A=B,B=-5,F=ZERO(B)
+
+l3:
+  B=B-A
+  DECNZ l2,A=A>>1
+  A=B,B=-5
+
+l4:
+  JMPT PRINT, A=A+B,B=-2,D=A,F=POS(A+B)
+  JMPF iszero,A=A+B,B=-3,D=A,F=POS(A+B)
+  JMPF iszero,A=A+B,B=-4,D=A,F=POS(A+B)
+  JMPF iszero,A=A+B,B=-1,D=A,F=POS(A+B)
+  JMPF iszero,A=A+B,B=-5,D=A,F=POS(A+B)
+  JMPF iszero,A=A+B,B=-1,D=A,F=POS(A+B)
+  JMPF iszero,A=A+B,B=-4,D=A,F=POS(A+B)
+  JMPF iszero,A=A+B,B=-3,D=A,F=POS(A+B)
+  JMPF iszero,A=A+B,B=-2,D=A,F=POS(A+B)
+  JMPF iszero,A=A+B,B=-5,D=A,F=POS(A+B)
+  JMPF iszero,A=A+B,     D=A,F=ZERO(A+B)
+  JMPF l0,               D=A
+  
+iszero:
+  A=D
+  F=ZERO(-A)
+  A=IN1,B=6,JMPF l1
+
+PRINT:
+  OUT1=W,JMP l1
