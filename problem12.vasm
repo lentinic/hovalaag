@@ -1,0 +1,30 @@
+  W=20
+  OUT2=W
+  A=IN1,B=19
+  A=IN1,B=A,C=B,D=A  
+  
+l0:     
+  A=B,B=A       
+  F=POS(B-A)            
+  JMPT IS_MAX,A=D,D=A 
+  F=NEG(B-A),A=D,D=A          
+  JMPT IS_MIN,A=B,B=A
+
+  A=IN1,DECNZ l0    
+  A=IN2,OUT2=W,B=20,JMP EXIT
+
+IS_MAX:
+  A=IN2,D=A,W=C,OUT2=W
+  A=IN2,OUT2=W
+  A=IN1,W=A,DECNZ l0
+  A=IN2,OUT2=W,B=20,JMP EXIT
+
+IS_MIN:       
+  A=IN1,D=A,W=C,DECNZ l0    
+  A=IN2,OUT2=W,B=20
+
+EXIT:
+  A=IN2,W=B-A
+  OUT1=W,W=B-A            
+  OUT1=W                 
+              
